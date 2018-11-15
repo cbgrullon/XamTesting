@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="App3.Views.LoginPage"
+             Title="{Binding Title}">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            
+            <!--Colors-->
+            <x:Int32 x:Key="defaultRadiusBorder">10</x:Int32>
+            <Color x:Key="greenColor">#3CA74F</Color>
+            <Color x:Key="greyColor">#838383</Color>
+            <Color x:Key="whiteColor">#fff</Color>
+            
+            <Style x:Key="loginStyle" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="{StaticResource greenColor}"/>
+                <Setter Property="TextColor" Value="{StaticResource whiteColor}"/>
+                <Setter Property="BorderRadius" Value="{StaticResource defaultRadiusBorder}"/>
+            </Style>
+
+
+            <Style x:Key="cancelStyle" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="{StaticResource greyColor}"/>
+                <Setter Property="TextColor" Value="{StaticResource whiteColor}"/>
+                <Setter Property="BorderRadius" Value="{StaticResource defaultRadiusBorder}"/>
+            </Style>
+
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem  Name="Press" Command="{Binding OnClickCommand}"/>
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <StackLayout Orientation="Vertical" VerticalOptions="Fill">
+
+            <Grid VerticalOptions="FillAndExpand" Padding="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+
+                <Entry Grid.Row="0" Placeholder="@Username" Text="{Binding Username}"
+                       Keyboard="Email"/>
+                
+                <Entry Grid.Row="1" Placeholder="@Password" Text="{Binding Password}"
+                       IsPassword="True"/>
+
+                <ContentView Grid.Row="2" HorizontalOptions="Center" VerticalOptions="Center">
+                    <ActivityIndicator IsRunning="{Binding IsBusy}"
+                                   IsVisible="{Binding IsBusy}"/>
+                </ContentView>
+            </Grid>
+            
+            <StackLayout Orientation="Horizontal" VerticalOptions="EndAndExpand"
+                         Padding="10">
+                <Button Text="LOGIN" 
+                        Command="{Binding OnLoginCommand}" HorizontalOptions="FillAndExpand"
+                        Style="{StaticResource loginStyle}"/>
+                
+                <Button Text="LOGIN" 
+                        Command="{Binding OnCancelCommand}" HorizontalOptions="FillAndExpand"
+                        Style="{StaticResource cancelStyle}"/>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
